@@ -1,0 +1,53 @@
+import java.util.*;
+public class Lexicographicpaths {
+
+	/**
+	 * @param args
+	 */
+	public static int find_count(int a, int b) {
+        if (a == 0 || b == 0) {
+            return 1;
+        }
+        int c = a - b;
+        long m = 1, l = 1;
+        for (int i = a; i > c; i--) {
+            m = m * i;
+        }
+        for (int i = b; i > 0; i--) {
+            l = l * i;
+        }
+        int count=(int)(m/l);
+        return count;
+    }
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		for(int i=0;i<t;i++)
+		{
+			int x=sc.nextInt();
+			int y=sc.nextInt();
+			int k=sc.nextInt();
+			int fact=0;
+			String s="";
+			 while (x != 0) {
+	                fact = find_count(x + y - 1, y);
+	                if (fact >= k) {
+	                    s = s + "H";
+	                    x--;
+	                } else {
+	                    s = s + "V";
+	                    k = k - fact;
+	                    y--;
+	                }
+	            }
+	            for (int j = 0; j < y; j++) {
+	                s = s + "V";
+	            }
+	            System.out.println(s);
+		}
+
+	}
+
+}
